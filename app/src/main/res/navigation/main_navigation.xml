@@ -1,0 +1,39 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/home_dest">
+
+    <fragment
+        android:id="@+id/home_dest"
+        android:name="com.fabiolee.iproperty.ui.home.HomeFragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/search_results_action"
+            app:destination="@+id/search_results_dest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/search_results_dest"
+        android:name="com.fabiolee.iproperty.ui.searchresults.SearchResultsFragment"
+        tools:layout="@layout/search_results_fragment">
+        <action
+            android:id="@+id/property_details_action"
+            app:destination="@+id/property_details_dest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/property_details_dest"
+        android:name="com.fabiolee.iproperty.ui.propertydetails.PropertyDetailsFragment"
+        tools:layout="@layout/property_details_fragment" />
+
+    <fragment
+        android:id="@+id/saved_dest"
+        android:name="com.fabiolee.iproperty.ui.saved.SavedFragment"
+        tools:layout="@layout/saved_fragment" />
+
+    <fragment
+        android:id="@+id/me_dest"
+        android:name="com.fabiolee.iproperty.ui.me.MeFragment"
+        tools:layout="@layout/me_fragment" />
+
+</navigation>

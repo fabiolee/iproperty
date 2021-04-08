@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">iProperty Malaysia</string>
+
+    <string name="hint_search">Search for properties</string>
+
+    <string name="label_home">Home</string>
+    <string name="label_me">Me</string>
+    <string name="label_property_id_param">Property Id: %s</string>
+    <string name="label_saved">Saved</string>
+    <string name="label_title_param">Title: %s</string>
+</resources>
