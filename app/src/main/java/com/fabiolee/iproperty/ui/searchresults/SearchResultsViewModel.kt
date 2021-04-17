@@ -3,7 +3,7 @@ package com.fabiolee.iproperty.ui.searchresults
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fabiolee.iproperty.repository.model.SearchResults
+import com.fabiolee.iproperty.repository.model.Item
 import com.fabiolee.iproperty.repository.model.SearchResultsResponse
 import com.fabiolee.iproperty.repository.remote.ApiService
 import retrofit2.Call
@@ -20,8 +20,8 @@ class SearchResultsViewModel(
     }
 
     val loading: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
-    val data: MutableLiveData<List<SearchResults>?> by lazy {
-        MutableLiveData<List<SearchResults>?>().also {
+    val data: MutableLiveData<List<Item>?> by lazy {
+        MutableLiveData<List<Item>?>().also {
             loadData(searchText)
         }
     }

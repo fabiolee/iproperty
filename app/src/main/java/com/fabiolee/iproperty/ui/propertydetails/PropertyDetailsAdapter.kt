@@ -1,16 +1,14 @@
-package com.fabiolee.iproperty.ui.searchresults
+package com.fabiolee.iproperty.ui.propertydetails
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fabiolee.iproperty.databinding.PropertyItemBinding
-import com.fabiolee.iproperty.repository.model.Item
+import com.fabiolee.iproperty.repository.model.*
 
-class SearchResultsAdapter(
-    private var modelListener: Item.Listener
-) : RecyclerView.Adapter<SearchResultsAdapter.ViewHolder>() {
+class PropertyDetailsAdapter : RecyclerView.Adapter<PropertyDetailsAdapter.ViewHolder>() {
 
-    private var data: List<Item>? = null
+    private var data: PropertyDetailsResponse? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -21,23 +19,30 @@ class SearchResultsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (data.isNullOrEmpty()) {
+        if (data == null) {
             return
         }
-        val item = data!![position]
+        val item = Item(
+            title = data?.title,
+            propertyType = data?.propertyType,
+            prices = data?.prices,
+            cover = data?.cover,
+            publishedAt = data?.publishedAt,
+            address = data?.address,
+            attributes = data?.attributes
+        )
         holder.binding.model = item
-        holder.binding.modelListener = modelListener
     }
 
     override fun getItemCount(): Int {
-        return if (data.isNullOrEmpty()) {
+        return if (data == null) {
             0
         } else {
-            data!!.size
+            1
         }
     }
 
-    fun updateData(data: List<Item>?) {
+    fun updateData(data: PropertyDetailsResponse?) {
         this.data = data
         notifyDataSetChanged()
     }

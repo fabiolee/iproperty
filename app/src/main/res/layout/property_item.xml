@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <import type="com.fabiolee.iproperty.repository.model.Item" />
+
+        <import type="com.fabiolee.iproperty.repository.model.Item.Listener" />
+
+        <import type="com.fabiolee.iproperty.repository.model.PriceKt" />
+
+        <import type="com.fabiolee.iproperty.util.TimeUtil" />
+
+        <variable
+            name="model"
+            type="Item" />
+
+        <variable
+            name="modelListener"
+            type="Listener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:modelListener="@{modelListener}"
+        app:propertyId="@{model.id}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/gallery"
+                android:contentDescription="@{model.title}"
+                android:scaleType="centerCrop"
+                android:src="@{model.cover.url}"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_price"
+                style="@style/AppTheme.Text.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{PriceKt.formatMoney(model.prices[0])}"
+                app:layout_constraintTop_toBottomOf="@+id/item_image"
+                tools:text="Price" />
+
+            <TextView
+                android:id="@+id/item_title"
+                style="@style/AppTheme.Text.SubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{model.title}"
+                app:layout_constraintTop_toBottomOf="@+id/item_price"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/item_address"
+                style="@style/AppTheme.Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{model.address.formattedAddress}"
+                android:visibility="@{TextUtils.isEmpty(model.address.formattedAddress) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@+id/item_title"
+                tools:text="Address" />
+
+            <TextView
+                android:id="@+id/item_property_type"
+                style="@style/AppTheme.Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{model.propertyType}"
+                app:layout_constraintTop_toBottomOf="@+id/item_address"
+                tools:text="Property Type" />
+
+            <TextView
+                android:id="@+id/item_built_up"
+                style="@style/AppTheme.Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{@string/label_built_up_param(model.attributes.builtUp)}"
+                app:layout_constraintTop_toBottomOf="@+id/item_property_type"
+                tools:text="Built Up" />
+
+            <TextView
+                android:id="@+id/item_furnishing"
+                style="@style/AppTheme.Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{@string/label_furnishing_param(model.attributes.furnishing)}"
+                android:visibility="@{TextUtils.isEmpty(model.attributes.furnishing) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@+id/item_built_up"
+                tools:text="Furnishing" />
+
+            <TextView
+                android:id="@+id/item_bedroom"
+                style="@style/AppTheme.Text.SubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:text="@{model.attributes.bedroom}"
+                app:drawableStartCompat="@drawable/ic_baseline_single_bed_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_furnishing"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/item_bathroom"
+                style="@style/AppTheme.Text.SubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:text="@{model.attributes.bathroom}"
+                app:drawableStartCompat="@drawable/ic_baseline_bathtub_24"
+                app:layout_constraintStart_toEndOf="@+id/item_bedroom"
+                app:layout_constraintTop_toBottomOf="@+id/item_furnishing"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/item_carpark"
+                style="@style/AppTheme.Text.SubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:text="@{model.attributes.carPark}"
+                app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
+                app:layout_constraintStart_toEndOf="@+id/item_bathroom"
+                app:layout_constraintTop_toBottomOf="@+id/item_furnishing"
+                tools:text="1" />
+
+            <ImageButton
+                android:id="@+id/item_saved"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/label_saved"
+                android:padding="8dp"
+                android:src="@drawable/ic_baseline_star_border_24"
+                android:visibility="@{TextUtils.isEmpty(model.id) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@+id/item_carpark"
+                app:layout_constraintTop_toBottomOf="@+id/item_furnishing" />
+
+            <TextView
+                android:id="@+id/item_published_at"
+                style="@style/AppTheme.Text.SubBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:text="@{@string/label_published_at_param(TimeUtil.formatDate(TimeUtil.DATE_TIME_ISO_8601, TimeUtil.DATE_MMM_D_YYYY, model.publishedAt))}"
+                android:visibility="@{TextUtils.isEmpty(model.publishedAt) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@+id/item_bedroom"
+                tools:text="Published At" />
+
+            <Space
+                android:id="@+id/item_space"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/item_published_at" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

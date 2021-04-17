@@ -19,8 +19,8 @@ class PropertyDetailsViewModel(
     }
 
     val loading: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
-    val data: MutableLiveData<String> by lazy {
-        MutableLiveData<String>().also {
+    val data: MutableLiveData<PropertyDetailsResponse?> by lazy {
+        MutableLiveData<PropertyDetailsResponse?>().also {
             loadData(propertyId)
         }
     }
@@ -38,7 +38,7 @@ class PropertyDetailsViewModel(
                     call: Call<PropertyDetailsResponse>,
                     response: Response<PropertyDetailsResponse>
                 ) {
-                    data.postValue("propertyId=${propertyId}\ntitle=${response.body()?.title}")
+                    data.postValue(response.body())
                     loading.value = false
                 }
             })

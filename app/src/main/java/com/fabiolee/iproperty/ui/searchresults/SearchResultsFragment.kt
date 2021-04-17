@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fabiolee.iproperty.R
 import com.fabiolee.iproperty.databinding.SearchResultsFragmentBinding
-import com.fabiolee.iproperty.repository.model.SearchResults
+import com.fabiolee.iproperty.repository.model.Item
 import com.fabiolee.iproperty.ui.dpToPx
 import com.fabiolee.iproperty.ui.propertydetails.PropertyDetailsFragment
 import com.fabiolee.iproperty.ui.widget.VerticalSpaceItemDecoration
@@ -56,9 +56,11 @@ class SearchResultsFragment : Fragment() {
     }
 
     private fun setupContent() {
-        adapter = SearchResultsAdapter { propertyId: String? ->
-            navigateToPropertyDetails(propertyId)
-        }
+        adapter = SearchResultsAdapter(object : Item.Listener {
+            override fun onClickContainer(propertyId: String?) {
+                navigateToPropertyDetails(propertyId)
+            }
+        })
         binding.content.addItemDecoration(VerticalSpaceItemDecoration(dpToPx(16)))
         binding.content.adapter = adapter
     }
@@ -77,12 +79,12 @@ class SearchResultsFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner, Observer { loading ->
             updateLoadingView(loading)
         })
-        viewModel.data.observe(viewLifecycleOwner, Observer { data: List<SearchResults>? ->
+        viewModel.data.observe(viewLifecycleOwner, Observer { data: List<Item>? ->
             updateContent(data)
         })
     }
 
-    private fun updateContent(data: List<SearchResults>?) {
+    private fun updateContent(data: List<Item>?) {
         adapter?.updateData(data)
     }
 

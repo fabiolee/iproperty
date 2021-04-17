@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">iProperty Malaysia</string>
 
+    <string name="btn_contact">Contact</string>
+    <string name="btn_whatsapp">WhatsApp</string>
+
     <string name="hint_search">Search for properties</string>
 
+    <string name="label_built_up_param">Built-up Size: %s sq. ft.</string>
+    <string name="label_furnishing_param">Furnishing: %s</string>
     <string name="label_home">Home</string>
     <string name="label_me">Me</string>
-    <string name="label_property_id_param">Property Id: %s</string>
+    <string name="label_published_at_param">Published on: %s</string>
     <string name="label_saved">Saved</string>
-    <string name="label_title_param">Title: %s</string>
 </resources>

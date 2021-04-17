@@ -7,4 +7,26 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="AppTheme.Button.Blue">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Button.Gray">
+        <item name="colorButtonNormal">@color/gallery</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="AppTheme.Text.Title" parent="TextAppearance.AppCompat.Subhead" />
+
+    <style name="AppTheme.Text.SubTitle" parent="TextAppearance.AppCompat.Body2" />
+
+    <style name="AppTheme.Text.Body" parent="TextAppearance.AppCompat.Body1" />
+
+    <style name="AppTheme.Text.SubBody" parent="TextAppearance.AppCompat.Caption" />
+
 </resources>

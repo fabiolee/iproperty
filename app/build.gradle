@@ -20,7 +20,8 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'retrofit2.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro', 'glide.pro', 'retrofit2.pro'
         }
     }
 
@@ -38,8 +39,9 @@ android {
 dependencies {
     def converter_fastjson_version = '2.2.0'
     def fastjson_version = '1.2.75'
+    def glide_version = "4.11.0"
     def lifecycle_version = '2.3.1'
-    def navigation_version = '2.3.4'
+    def navigation_version = '2.3.5'
     def retrofit_version = "2.9.0"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -53,6 +55,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     implementation "com.alibaba:fastjson:$fastjson_version"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "org.ligboy.retrofit2:converter-fastjson-android:$converter_fastjson_version"
     testImplementation 'junit:junit:4.13.1'

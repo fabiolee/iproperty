@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="AppTheme.Button.Blue">
+        <item name="android:colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Button.Gray">
+        <item name="android:colorButtonNormal">@color/gallery</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+</resources>
