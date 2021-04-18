@@ -6,6 +6,7 @@ data class Item(
     val propertyType: String? = null,
     val prices: List<Price>? = null,
     val cover: Media? = null,
+    val description: String? = null,
     val publishedAt: String? = null,
     val address: Address? = null,
     val attributes: Attributes? = null,

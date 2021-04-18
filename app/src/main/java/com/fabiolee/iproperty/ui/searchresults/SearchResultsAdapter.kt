@@ -38,8 +38,20 @@ class SearchResultsAdapter(
     }
 
     fun updateData(data: List<Item>?) {
+        val previousItemCount = itemCount
         this.data = data
-        notifyDataSetChanged()
+        val currentItemCount = itemCount
+        when {
+            previousItemCount == 0 -> {
+                notifyItemRangeInserted(0, currentItemCount)
+            }
+            currentItemCount == 0 -> {
+                notifyItemRangeRemoved(0, previousItemCount)
+            }
+            else -> {
+                notifyDataSetChanged()
+            }
+        }
     }
 
     inner class ViewHolder(

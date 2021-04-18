@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fabiolee.iproperty.databinding.PropertyDetailsFragmentBinding
+import com.fabiolee.iproperty.repository.model.Item
 import com.fabiolee.iproperty.repository.model.Lister
 import com.fabiolee.iproperty.repository.model.Phone
 import com.fabiolee.iproperty.repository.model.PropertyDetailsResponse
@@ -76,7 +77,21 @@ class PropertyDetailsFragment : Fragment() {
     }
 
     private fun updateContent(data: PropertyDetailsResponse?) {
-        adapter?.updateData(data)
+        adapter?.updateData(
+            arrayListOf(
+                Item(
+                    title = data?.title,
+                    propertyType = data?.propertyType,
+                    prices = data?.prices,
+                    cover = data?.cover,
+                    publishedAt = data?.publishedAt,
+                    address = data?.address,
+                    attributes = data?.attributes
+                ),
+                data?.prices?.first(),
+                Item(title = data?.title, description = data?.description)
+            )
+        )
     }
 
     private fun updateFooter(listers: List<Lister>?) {

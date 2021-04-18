@@ -46,11 +46,11 @@
                 android:background="@color/gallery"
                 android:contentDescription="@{model.title}"
                 android:scaleType="centerCrop"
-                android:src="@{model.cover.url}"
                 app:layout_constraintDimensionRatio="16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:url="@{model.cover.url}" />
 
             <TextView
                 android:id="@+id/item_price"
@@ -191,7 +191,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
                 android:text="@{@string/label_published_at_param(TimeUtil.formatDate(TimeUtil.DATE_TIME_ISO_8601, TimeUtil.DATE_MMM_D_YYYY, model.publishedAt))}"
                 android:visibility="@{TextUtils.isEmpty(model.publishedAt) ? View.GONE : View.VISIBLE}"
                 app:layout_constraintTop_toBottomOf="@+id/item_bedroom"

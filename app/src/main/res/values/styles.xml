@@ -21,6 +21,8 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="AppTheme.Button.Borderless" parent="Widget.AppCompat.Button.Borderless.Colored" />
+
     <style name="AppTheme.Text.Title" parent="TextAppearance.AppCompat.Subhead" />
 
     <style name="AppTheme.Text.SubTitle" parent="TextAppearance.AppCompat.Body2" />
