@@ -8,6 +8,7 @@ data class PropertyDetailsResponse(
     val description: String? = null,
     val publishedAt: String? = null,
     val address: Address? = null,
+    val featureDescription: String? = null,
     val attributes: Attributes? = null,
     val listers: List<Lister>? = null
 )

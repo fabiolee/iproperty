@@ -58,6 +58,7 @@ class SearchResultsFragment : Fragment() {
     private fun setupContent() {
         adapter = SearchResultsAdapter(object : Item.Listener {
             override fun onClickContainer(propertyId: String?) {
+                super.onClickContainer(propertyId)
                 navigateToPropertyDetails(propertyId)
             }
         })

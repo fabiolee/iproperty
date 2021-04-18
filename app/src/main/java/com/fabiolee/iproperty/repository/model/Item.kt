@@ -9,12 +9,20 @@ data class Item(
     val description: String? = null,
     val publishedAt: String? = null,
     val address: Address? = null,
+    val featureDescription: String? = null,
     val attributes: Attributes? = null,
     val listers: List<Lister>? = null
 ) {
 
     interface Listener {
-        fun onClickContainer(propertyId: String?)
+        fun onClickCall(phones: List<Phone>?) {
+        }
+
+        fun onClickContainer(propertyId: String?) {
+        }
+
+        fun onClickSms(phones: List<Phone>?) {
+        }
     }
 
 }

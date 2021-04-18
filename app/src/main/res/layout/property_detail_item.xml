@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="com.fabiolee.iproperty.repository.model.Item" />
+
+        <variable
+            name="model"
+            type="Item" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/item_property_details"
+            style="@style/AppTheme.Text.SubTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/label_property_details"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/item_land_title_label"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_land_title"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_property_details" />
+
+        <TextView
+            android:id="@+id/item_land_title_value"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{model.attributes.landTitleType}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_land_title_label"
+            tools:text="@string/label_land_title" />
+
+        <TextView
+            android:id="@+id/item_property_title_type_label"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_property_title_type"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_land_title_label" />
+
+        <TextView
+            android:id="@+id/item_property_title_type_value"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_property_title_type_label"
+            tools:text="@string/label_property_title_type" />
+
+        <TextView
+            android:id="@+id/item_tenure_label"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_tenure"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_property_title_type_label" />
+
+        <TextView
+            android:id="@+id/item_tenure_value"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{model.attributes.tenure}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_tenure_label"
+            tools:text="@string/label_tenure" />
+
+        <TextView
+            android:id="@+id/item_built_up_price_label"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_built_up_price"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_tenure_label" />
+
+        <TextView
+            android:id="@+id/item_built_up_price_value"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{TextUtils.isEmpty(model.attributes.pricePSF) ? null : @string/label_built_up_price_param(model.attributes.pricePSF)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_built_up_price_label"
+            tools:text="@string/label_built_up_price" />
+
+        <TextView
+            android:id="@+id/item_furnishing_label"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_furnishing"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_built_up_price_label" />
+
+        <TextView
+            android:id="@+id/item_furnishing_value"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{model.attributes.furnishing}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_furnishing_label"
+            tools:text="@string/label_furnishing" />
+
+        <TextView
+            android:id="@+id/item_unit_type_label"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_unit_type"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_furnishing_label" />
+
+        <TextView
+            android:id="@+id/item_unit_type_value"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{model.attributes.unitType}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_unit_type_label"
+            tools:text="@string/label_unit_type" />
+
+        <Button
+            android:id="@+id/button_more"
+            style="@style/AppTheme.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_more"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_unit_type_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

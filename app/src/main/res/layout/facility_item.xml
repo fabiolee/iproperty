@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="com.fabiolee.iproperty.repository.model.Item" />
+
+        <variable
+            name="model"
+            type="Item" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/item_facilities"
+            style="@style/AppTheme.Text.SubTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/label_facilities"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/item_facility_0"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_facilities"
+            app:showPosition="@{0}"
+            app:splitDelimiter='@{","}'
+            app:splitValue="@{model.featureDescription}"
+            tools:text="Facility 0" />
+
+        <TextView
+            android:id="@+id/item_facility_1"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_facility_0"
+            app:showPosition="@{1}"
+            app:splitDelimiter='@{","}'
+            app:splitValue="@{model.featureDescription}"
+            tools:text="Facility 1" />
+
+        <TextView
+            android:id="@+id/item_facility_2"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_facility_0"
+            app:showPosition="@{2}"
+            app:splitDelimiter='@{","}'
+            app:splitValue="@{model.featureDescription}"
+            tools:text="Facility 2" />
+
+        <TextView
+            android:id="@+id/item_facility_3"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_facility_2"
+            app:showPosition="@{3}"
+            app:splitDelimiter='@{","}'
+            app:splitValue="@{model.featureDescription}"
+            tools:text="Facility 3" />
+
+        <TextView
+            android:id="@+id/item_facility_4"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_facility_2"
+            app:showPosition="@{4}"
+            app:splitDelimiter='@{","}'
+            app:splitValue="@{model.featureDescription}"
+            tools:text="Facility 4" />
+
+        <TextView
+            android:id="@+id/item_facility_5"
+            style="@style/AppTheme.Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_baseline_directions_car_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/item_facility_4"
+            app:showPosition="@{5}"
+            app:splitDelimiter='@{","}'
+            app:splitValue="@{model.featureDescription}"
+            tools:text="Facility 5" />
+
+        <Button
+            android:id="@+id/button_more"
+            style="@style/AppTheme.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_more"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_facility_4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -9,11 +9,20 @@
     <string name="hint_search">Search for properties</string>
 
     <string name="label_built_up_param">Built-up Size: %s sq. ft.</string>
+    <string name="label_built_up_price">Built-up Price</string>
+    <string name="label_built_up_price_param">RM %s sq. ft.</string>
+    <string name="label_facilities">Facilities</string>
+    <string name="label_furnishing">Furnishing</string>
     <string name="label_furnishing_param">Furnishing: %s</string>
     <string name="label_home">Home</string>
     <string name="label_installment_param">%s per month</string>
+    <string name="label_land_title">Land Title</string>
     <string name="label_me">Me</string>
     <string name="label_mortgage_calculator">Mortgage Calculator</string>
+    <string name="label_property_details">Property Details</string>
+    <string name="label_property_title_type">Property Title Type</string>
     <string name="label_published_at_param">Published on: %s</string>
     <string name="label_saved">Saved</string>
+    <string name="label_tenure">Tenure</string>
+    <string name="label_unit_type">Unit Type</string>
 </resources>

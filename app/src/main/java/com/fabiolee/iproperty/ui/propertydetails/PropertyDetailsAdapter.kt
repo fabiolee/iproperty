@@ -2,57 +2,42 @@ package com.fabiolee.iproperty.ui.propertydetails
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.fabiolee.iproperty.databinding.CalculatorItemBinding
-import com.fabiolee.iproperty.databinding.DescriptionItemBinding
-import com.fabiolee.iproperty.databinding.PropertyItemBinding
-import com.fabiolee.iproperty.repository.model.*
+import com.fabiolee.iproperty.BR
+import com.fabiolee.iproperty.R
+import com.fabiolee.iproperty.repository.model.Item
 import java.lang.IllegalArgumentException
 
-class PropertyDetailsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PropertyDetailsAdapter(
+    private var modelListener: Item.Listener
+) : RecyclerView.Adapter<PropertyDetailsAdapter.BindingViewHolder>() {
 
-    private var data: List<Any?>? = null
+    private var data: List<Item>? = null
 
     companion object {
         const val VIEW_TYPE_PROPERTY = 1
         const val VIEW_TYPE_CALCULATOR = 2
         const val VIEW_TYPE_DESCRIPTION = 3
+        const val VIEW_TYPE_PROPERTY_DETAIL = 4
+        const val VIEW_TYPE_FACILITY = 5
+        const val VIEW_TYPE_LISTER = 6
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return when (viewType) {
-            VIEW_TYPE_PROPERTY -> {
-                PropertyViewHolder(PropertyItemBinding.inflate(inflater, parent, false))
-            }
-            VIEW_TYPE_CALCULATOR -> {
-                CalculatorViewHolder(CalculatorItemBinding.inflate(inflater, parent, false))
-            }
-            VIEW_TYPE_DESCRIPTION -> {
-                DescriptionViewHolder(DescriptionItemBinding.inflate(inflater, parent, false))
-            }
-            else -> {
-                throw IllegalArgumentException("Invalid viewType.")
-            }
-        }
+        val layoutId = getLayoutId(viewType)
+        return BindingViewHolder(DataBindingUtil.inflate(inflater, layoutId, parent, false))
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
         if (data.isNullOrEmpty()) {
             return
         }
         val item = data!![position]
-        when (holder) {
-            is PropertyViewHolder -> {
-                holder.binding.model = item as Item?
-            }
-            is CalculatorViewHolder -> {
-                holder.binding.model = item as Price?
-            }
-            is DescriptionViewHolder -> {
-                holder.binding.model = item as Item?
-            }
-        }
+        holder.binding.setVariable(BR.model, item)
+        holder.binding.setVariable(BR.modelListener, modelListener)
     }
 
     override fun getItemCount(): Int {
@@ -67,7 +52,7 @@ class PropertyDetailsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return position + 1
     }
 
-    fun updateData(data: List<Any?>) {
+    fun updateData(data: List<Item>) {
         val previousItemCount = itemCount
         this.data = data
         val currentItemCount = itemCount
@@ -84,16 +69,20 @@ class PropertyDetailsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    inner class PropertyViewHolder(
-        val binding: PropertyItemBinding
-    ) : RecyclerView.ViewHolder(binding.root)
+    private fun getLayoutId(viewType: Int): Int {
+        return when (viewType) {
+            VIEW_TYPE_PROPERTY -> R.layout.property_item
+            VIEW_TYPE_CALCULATOR -> R.layout.calculator_item
+            VIEW_TYPE_DESCRIPTION -> R.layout.description_item
+            VIEW_TYPE_PROPERTY_DETAIL -> R.layout.property_detail_item
+            VIEW_TYPE_FACILITY -> R.layout.facility_item
+            VIEW_TYPE_LISTER -> R.layout.lister_item
+            else -> throw IllegalArgumentException("Invalid viewType.")
+        }
+    }
 
-    inner class CalculatorViewHolder(
-        val binding: CalculatorItemBinding
-    ) : RecyclerView.ViewHolder(binding.root)
-
-    inner class DescriptionViewHolder(
-        val binding: DescriptionItemBinding
+    inner class BindingViewHolder(
+        val binding: ViewDataBinding
     ) : RecyclerView.ViewHolder(binding.root)
 
 }

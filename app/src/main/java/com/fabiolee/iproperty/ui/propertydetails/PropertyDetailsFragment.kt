@@ -19,6 +19,7 @@ import com.fabiolee.iproperty.repository.model.PropertyDetailsResponse
 import com.fabiolee.iproperty.ui.dpToPx
 import com.fabiolee.iproperty.ui.widget.VerticalSpaceItemDecoration
 
+
 class PropertyDetailsFragment : Fragment() {
 
     // The binding property is only valid between onCreateView and onDestroyView.
@@ -51,7 +52,17 @@ class PropertyDetailsFragment : Fragment() {
     }
 
     private fun setupContent() {
-        adapter = PropertyDetailsAdapter()
+        adapter = PropertyDetailsAdapter(object : Item.Listener {
+            override fun onClickCall(phones: List<Phone>?) {
+                super.onClickCall(phones)
+                navigateToContact(phones)
+            }
+
+            override fun onClickSms(phones: List<Phone>?) {
+                super.onClickSms(phones)
+                navigateToSms(phones)
+            }
+        })
         binding.content.addItemDecoration(VerticalSpaceItemDecoration(dpToPx(16)))
         binding.content.adapter = adapter
     }
@@ -88,8 +99,11 @@ class PropertyDetailsFragment : Fragment() {
                     address = data?.address,
                     attributes = data?.attributes
                 ),
-                data?.prices?.first(),
-                Item(title = data?.title, description = data?.description)
+                Item(prices = data?.prices),
+                Item(title = data?.title, description = data?.description),
+                Item(attributes = data?.attributes),
+                Item(featureDescription = data?.featureDescription),
+                Item(listers = data?.listers)
             )
         )
     }
@@ -118,6 +132,13 @@ class PropertyDetailsFragment : Fragment() {
         val number = phones?.find { it.label == Phone.LABEL_MOBILE }?.number
         val intent = Intent(Intent.ACTION_DIAL)
         intent.data = Uri.parse("tel:$number")
+        startActivity(intent)
+    }
+
+    private fun navigateToSms(phones: List<Phone>?) {
+        val number = phones?.find { it.label == Phone.LABEL_MOBILE }?.number
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse("sms:$number")
         startActivity(intent)
     }
 
